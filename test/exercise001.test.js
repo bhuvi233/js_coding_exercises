@@ -11,7 +11,7 @@ const {
   simpleFizzBuzz
 } = require("../challenges/exercise001");
 
-describe("capitalize", () => {
+xdescribe("capitalize", () => {
   test("returns a capitalized string", () => {
     expect(capitalize("hello")).toBe("Hello");
     expect(capitalize("the quick fox")).toBe("The quick fox");
@@ -23,7 +23,7 @@ describe("capitalize", () => {
   });
 });
 
-xdescribe("generateInitials", () => {
+describe("generateInitials", () => {
   test("returns the initials of a firstname and surname", () => {
     expect(generateInitials("Frederic", "Bonneville")).toBe("F.B");
   });
