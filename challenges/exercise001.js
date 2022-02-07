@@ -15,8 +15,7 @@ function addVAT(originalPrice, vatRate) {
   
   let rate = (originalPrice * (vatRate/100));
   // If the rate is Float, round the decimal places to 2 digits
-  if (!Number.isInteger(rate))
-    rate = Number(rate.toFixed(2));
+  rate = Number(rate.toFixed(2));
   return (originalPrice + rate);
 }
 
@@ -26,8 +25,7 @@ function getSalePrice(originalPrice, reduction) {
   
   let rate = (originalPrice * (reduction/100));
   // If the rate is Float, round the decimal places to 2 digits
-  if (!Number.isInteger(rate))
-    rate = Number(rate.toFixed(2));
+  rate = Number(rate.toFixed(2));
   return (originalPrice - rate);
 }
 
@@ -72,7 +70,9 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  
+  let mean = scores.reduce((prev, curr) => prev + curr) / scores.length;
+  return(Number(mean.toFixed(2)));
 }
 
 function simpleFizzBuzz(n) {
