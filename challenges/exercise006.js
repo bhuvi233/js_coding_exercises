@@ -6,6 +6,10 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  
+  let result = 0;
+  arr.forEach(num => ((num % 3 === 0) || (num % 5 === 0)) ? result += num : 0);
+  return (result);
 };
 
 /**
@@ -15,6 +19,10 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+
+  let result = str.match(/[^GCTA]/);
+  return (result != null ?  false :  true);
+
 };
 
 /**
@@ -24,6 +32,14 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  
+  const dnaPair = {
+    'A' : 'T',
+    'T' : 'A',
+    'C' : 'G',
+    'G' : 'C'
+  }
+  return(str.split("").map(char => dnaPair[char]).join(""));
 };
 
 /**
@@ -33,6 +49,11 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+
+  for (let i = 2; i < n; i++)
+    if (n % i === 0) return false;
+
+  return n > 1;
 };
 
 /**
@@ -49,6 +70,16 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+
+  let result = [];
+  for(let i = 0; i < n; i++){
+    let temparr = [];
+    for (let j = 0; j < n; j++)
+      temparr.push(fill);
+    result.push(temparr)
+  }
+  return(result);
+
 };
 
 /**
@@ -66,6 +97,12 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+
+  let count = 0;
+  staff.forEach(staf => staf.rota.includes(day) ? count++ : 0)
+  
+  return (count > 2 ? true : false);
+  
 };
 
 module.exports = {
