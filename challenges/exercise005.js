@@ -1,38 +1,80 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  
+  let index = nums.indexOf(n);
+  if (index < 0 || index >= nums.length - 1)
+    return null;
+  return (nums[index + 1]);
+  
 };
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  
+  let result = {"0": 0,
+                "1": 0};
+
+  for (let i = 0; i < str.length; i++)
+    (str[i] === '0') ? result[0]++ : result[1]++;
+    
+  return result;
 };
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  
+  reversenum = Number(n.toString().split("").reverse().join(""));
+  
+  return reversenum;
 };
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  // Your code here!
+  
+  let count = 0;
+  count = arrs.map(arr => arr.reduce((perv, curr) => perv + curr)).reduce((prev, curr) => prev + curr);
+  
+  return(count);
 };
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+  
+  if (arr.length < 2)
+    return arr;
+    
+  [arr[0], arr[arr.length-1]] = [arr[arr.length-1], arr[0]]
+  return(arr);
 };
 
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
+  
+  //let result = [];
+  const regex =  new RegExp(`([a-zA-Z]\s)*(${searchTerm})`,"i"); 
+  for(const [key,value] of Object.entries(haystack))
+  {
+    let result = regex.exec(haystack[key]);
+    if(result != null)
+      return true;
+  }
+  return false;
+
 };
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  
+  let result = {};
+  let strArray = (str.split(" ")).map(word => word.toLowerCase().match(/[a-zA-Z]*/));
+  
+  strArray.forEach(word => 
+    result.hasOwnProperty(word) ? result[word]++ : result[word] = 1);
+
+  return(result);
+  
 };
 
 module.exports = {
