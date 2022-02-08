@@ -4,6 +4,9 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  
+  return(n.toString().split("").map(Number).reduce((prev, curr) => prev + curr));
+
 };
 
 /**
@@ -17,7 +20,14 @@ const sumDigits = n => {
 const createRange = (start, end, step) => {
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
+
+  if (step === undefined) step = 1;
+  let result = [];
+  for (i = start; i <= end; i += step )
+    result.push(i);
+  return result;
 };
+
 
 /**
  * This function takes an array of user objects and their usage in minutes of various applications. The format of the data should be as follows:
@@ -51,6 +61,18 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+
+  let result = [];
+  users.forEach(user => {
+    let temp = user.screenTime.filter(x => x.date === date);
+    let count = 0;
+    if (temp.length > 0){
+    for (const [key,value] of Object.entries(temp[0].usage))
+      count += temp[0].usage[key];
+    if (count > 100) result.push(user.username);
+    }
+  });
+  return result;
 };
 
 /**
@@ -65,6 +87,14 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  let result = [];
+  hexStr = hexStr.substr(1);
+  let temp = hexStr.match(/.{2}/g);
+
+  for (let i = 0; i < 3; i++)
+    result.push(parseInt(temp[i], 16));
+  
+  return ("rgb("+result.join(",")+")");
 };
 
 /**
@@ -79,6 +109,43 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
+
+  for(let i = 0; i < 3; i++){
+    let str = "";
+    for(let j = 0; j < 3; j++){
+      if (board[i][j] == null)
+        break;
+      str += board[i][j];
+    }
+    if(str === "XXX" || str === "000")
+      return( str === "XXX" ? "X" : "0");  
+  }
+
+  for(let i = 0; i < 3; i++){
+    let str = "";
+    for(let j = 0; j < 3; j++){
+      if (board[j][i] == null)
+        break;
+      str += board[j][i];
+    }
+    if(str === "XXX" || str === "000")
+      return( str === "XXX" ? "X" : "0");  
+  }
+
+  if (board[0][0] != null && board[1][1] != null && board[2][2] != null){
+    str = board[0][0] + board[1][1] + board[2][2];
+    if(str === "XXX" || str === "000")
+      return( str === "XXX" ? "X" : "0");
+  }
+
+  if (board[0][2] != null && board[1][1] != null && board[2][0] != null){
+    str = board[0][2] + board[1][1] + board[2][0];
+    if(str === "XXX" || str === "000")
+      return( str === "XXX" ? "X" : "0");
+  }
+
+  return null;
+
 };
 
 module.exports = {
