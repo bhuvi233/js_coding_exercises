@@ -1,11 +1,13 @@
 function capitalize(word) {
   if (word === undefined) throw new Error("word is required");
+  
   return (word[0].toUpperCase() + word.slice(1));
 }
 
 function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
+  
   return (firstName[0] + '.' + lastName[0]);
 }
 
@@ -13,20 +15,14 @@ function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
   
-  let rate = (originalPrice * (vatRate/100));
-  // If the rate is Float, round the decimal places to 2 digits
-  rate = Number(rate.toFixed(2));
-  return (originalPrice + rate);
+  return (originalPrice + Number((originalPrice * (vatRate/100)).toFixed(2)));
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
   
-  let rate = (originalPrice * (reduction/100));
-  // If the rate is Float, round the decimal places to 2 digits
-  rate = Number(rate.toFixed(2));
-  return (originalPrice - rate);
+  return(originalPrice - Number((originalPrice * (reduction/100)).toFixed(2)));
 }
 
 function getMiddleCharacter(str) {
@@ -53,26 +49,21 @@ function reverseWord(word) {
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
   
-  let reversedWords = words.map((word) => (word.split("").reverse().join("")));
-  return reversedWords;
+  return(words.map((word) => (word.split("").reverse().join(""))));
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
   
   let count = 0;
-  users.forEach(user => {
-    if(user.type === "Linux")
-      count++;
-  });
+  users.forEach(user => (user.type === "Linux") ? count++ : 0)
   return (count);
 }
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
   
-  let mean = scores.reduce((prev, curr) => prev + curr) / scores.length;
-  return(Number(mean.toFixed(2)));
+  return(Number((scores.reduce((prev, curr) => prev + curr) / scores.length).toFixed(2)));
 }
 
 function simpleFizzBuzz(n) {

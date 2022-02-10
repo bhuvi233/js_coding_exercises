@@ -14,16 +14,13 @@ function findNamesBeginningWith(names, char) {
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
   
-  let regex = /to\s+[a-z][A-Z]*/g
-  let result = words.filter(word => word.match(regex));
-  return (result);
+  return(words.filter(word => word.match(/to\s+[a-zA-Z]*/g)));
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
   
-  let result = nums.filter(num => Number.isInteger(num) === true);
-  return (result);
+  return(nums.filter(num => Number.isInteger(num) === true));
 }
 
 function getCities(users) {
@@ -45,8 +42,7 @@ function findSentencesContaining(sentences, str) {
   if (!str) throw new Error("str is required");
   
   const regex =  new RegExp(`([a-z][A-Z]\s)*(${str})`,"i"); 
-  let result = sentences.filter(sentence => sentence.match(regex));
-  return (result);
+  return(sentences.filter(sentence => sentence.match(regex)));
 }
 
 function getLongestSides(triangles) {

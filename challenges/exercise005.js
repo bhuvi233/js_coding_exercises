@@ -3,9 +3,7 @@ const findNextNumber = (nums, n) => {
   if (n === undefined) throw new Error("n is required");
   
   let index = nums.indexOf(n);
-  if (index < 0 || index >= nums.length - 1)
-    return null;
-  return (nums[index + 1]);
+  return((index < 0 || index >= nums.length - 1) ? null : nums[index + 1])
   
 };
 
@@ -24,18 +22,13 @@ const count1sand0s = str => {
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
   
-  reversenum = Number(n.toString().split("").reverse().join(""));
-  
-  return reversenum;
+  return(Number(n.toString().split("").reverse().join("")));
 };
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
   
-  let count = 0;
-  count = arrs.map(arr => arr.reduce((perv, curr) => perv + curr)).reduce((prev, curr) => prev + curr);
-  
-  return(count);
+  return(arrs.map(arr => arr.reduce((perv, curr) => perv + curr)).reduce((prev, curr) => prev + curr));
 };
 
 const arrShift = arr => {
@@ -52,7 +45,6 @@ const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
   
-  //let result = [];
   const regex =  new RegExp(`([a-zA-Z]\s)*(${searchTerm})`,"i"); 
   for(const [key,value] of Object.entries(haystack))
   {
@@ -61,7 +53,6 @@ const findNeedle = (haystack, searchTerm) => {
       return true;
   }
   return false;
-
 };
 
 const getWordFrequencies = str => {

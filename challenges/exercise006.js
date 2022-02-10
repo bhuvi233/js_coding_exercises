@@ -20,9 +20,7 @@ const sumMultiples = arr => {
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
 
-  let result = str.match(/[^GCTA]/);
-  return (result != null ?  false :  true);
-
+  return (str.match(/[^GCTA]/) != null ? false : true)
 };
 
 /**
@@ -72,14 +70,10 @@ const createMatrix = (n, fill) => {
   if (fill === undefined) throw new Error("fill is required");
 
   let result = [];
-  for(let i = 0; i < n; i++){
-    let temparr = [];
-    for (let j = 0; j < n; j++)
-      temparr.push(fill);
-    result.push(temparr)
-  }
-  return(result);
+  for(let i = 0; i < n; i++)
+    result[i] = Array(n).fill(fill)
 
+  return(result);
 };
 
 /**
@@ -101,7 +95,7 @@ const areWeCovered = (staff, day) => {
   let count = 0;
   staff.forEach(staf => staf.rota.includes(day) ? count++ : 0)
   
-  return (count > 2 ? true : false);
+  return (count > 2);
   
 };
 
