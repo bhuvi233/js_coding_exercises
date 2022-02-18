@@ -2,23 +2,23 @@
 
 function printColours(colours){
     if (!colours) throw new Error("colour is required");
-    return([...colours]);
+    return [...colours];
 }
 
 function shoppingList(list, newItem){
     if (!list) throw new Error("list is required");
     if (!newItem) throw new Error("newItem is required");
-    return([...list, ...newItem]);
+    return [...list, ...newItem];
 }
 
 function highestNumber(numbers){
     if (!numbers) throw new Error("numbers are required");
-    return (Math.max(...numbers));
+    return Math.max(...numbers);
 }
 
 function splitThatString(string){
     if (!string) throw new Error("string is required");
-    return ([...string]);
+    return [...string];
 }
 
 
@@ -26,7 +26,7 @@ function splitThatString(string){
 
 function addressLookUp(user){
     if (!user) throw new Error("user is required");
-    return(user.address?.postcode);
+    return user.address?.postcode;
 }
 
 

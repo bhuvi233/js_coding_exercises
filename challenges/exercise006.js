@@ -7,9 +7,9 @@
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
   
-  let result = 0;
-  arr.forEach(num => ((num % 3 === 0) || (num % 5 === 0)) ? result += num : 0);
-  return (result);
+  let sum = 0;
+  arr.forEach(num => ((num % 3 === 0) || (num % 5 === 0)) ? sum += num : 0);
+  return sum;
 };
 
 /**
@@ -20,7 +20,7 @@ const sumMultiples = arr => {
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
 
-  return (str.match(/[^GCTA]/) != null ? false : true)
+  return str.match(/[^GCTA]/) != null ? false : true
 };
 
 /**
@@ -37,7 +37,7 @@ const getComplementaryDNA = str => {
     'C' : 'G',
     'G' : 'C'
   }
-  return(str.split("").map(char => dnaPair[char]).join(""));
+  return str.split("").map(char => dnaPair[char]).join("");
 };
 
 /**
@@ -69,11 +69,11 @@ const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
 
-  let result = [];
+  let matrix = [];
   for(let i = 0; i < n; i++)
-    result[i] = Array(n).fill(fill)
+    matrix[i] = Array(n).fill(fill)
 
-  return(result);
+  return matrix;
 };
 
 /**
@@ -95,7 +95,7 @@ const areWeCovered = (staff, day) => {
   let count = 0;
   staff.forEach(staf => staf.rota.includes(day) ? count++ : 0)
   
-  return (count > 2);
+  return count > 2;
   
 };
 

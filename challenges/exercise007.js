@@ -5,7 +5,7 @@
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
   
-  return(n.toString().split("").map(Number).reduce((prev, curr) => prev + curr));
+  return (n.toString().split("").map(Number).reduce((prev, curr) => prev + curr));
 
 };
 
@@ -23,10 +23,10 @@ const createRange = (start, end, step) => {
 
   if (step === undefined) step = 1;
   
-  let result = [];
+  let numberRange = [];
   for (i = start; i <= end; i += step )
-    result.push(i);
-  return result;
+    numberRange.push(i);
+  return numberRange;
 };
 
 
@@ -63,17 +63,18 @@ const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
 
-  let result = [];
+  let UsersWithMoreScreenTime = [];
   users.forEach(user => {
     let temp = user.screenTime.filter(x => x.date === date);
     let count = 0;
+
     if (temp.length > 0){
     for (const [key,value] of Object.entries(temp[0].usage))
       count += temp[0].usage[key];
-    if (count > 100) result.push(user.username);
+    if (count > 100) UsersWithMoreScreenTime.push(user.username);
     }
   });
-  return result;
+  return UsersWithMoreScreenTime;
 };
 
 /**
@@ -88,14 +89,15 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
-  let result = [];
+
+  let decColourCode = [];
   hexStr = hexStr.substr(1);
   let temp = hexStr.match(/.{2}/g);
 
   for (let i = 0; i < 3; i++)
-    result.push(parseInt(temp[i], 16));
+    decColourCode.push(parseInt(temp[i], 16));
   
-  return ("rgb("+result.join(",")+")");
+  return ("rgb("+decColourCode.join(",")+")");
 };
 
 /**
